@@ -7,7 +7,7 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
   CounterCubitCubit() : super(CounterCubitInitial());
 
   int counter = 0;
-
+  // ThemeData theme = ThemeData.light();
   void incrementCounter() {
     emit(CounterCubitIncrement());
 
@@ -22,4 +22,14 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
       return false;
     }
   }
+  // ToggleTheme()
+  // {
+  //   if (theme ==  ThemeData.light())
+  //   {
+  //     theme =  ThemeData.dark();
+  //   }
+  //   else{
+  //     theme =  ThemeData.light();
+  //   }
+  // }
 }

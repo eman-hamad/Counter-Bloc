@@ -1,6 +1,8 @@
+import 'package:counter__with_bloc/blocs/theme_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../blocs/theme_bloc.dart';
 import '../cubits/counter_cubit_cubit.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -11,15 +13,20 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var counterCubit = BlocProvider.of<CounterCubitCubit>(context);
-    // var counterStates = context.read<CounterCubitCubit>();
+
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(title),
+        leading: IconButton(
+            onPressed: () {
+              context.read<ThemeBloc>().add(ToggleThemeEvent());
+            },
+            icon: const Icon(size: 35, Icons.toggle_off)),
       ),
       body: BlocConsumer<CounterCubitCubit, CounterCubitState>(
         listener: (context, state) {
-          if (counterCubit.isReached() ) {
+          if (counterCubit.isReached()) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("You Reached to 10 ")));
           }
