@@ -14,8 +14,32 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
     counter++;
   }
 
-  bool isReached() {
-    if (counter >= 10) {
+  void decrementCounter() {
+    emit(CounterCubitDecrement());
+
+    counter--;
+  }
+
+  bool isReachedPositive() {
+    if (counter == 10) {
+      // emit(CounterCubitReached(counter));
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isReachedNegative() {
+    if (counter == -10) {
+      // emit(CounterCubitReached(counter));
+      return true;
+    } else {
+      return false;
+    }
+  }
+
+  bool isReachedMinus() {
+    if (counter < 0) {
       // emit(CounterCubitReached(counter));
       return true;
     } else {

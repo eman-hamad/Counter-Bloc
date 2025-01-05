@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var counterCubit = BlocProvider.of<CounterCubitCubit>(context);
+    var states = context.read<CounterCubitCubit>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,35 +25,64 @@ class HomeScreen extends StatelessWidget {
             },
             icon: const Icon(size: 35, Icons.toggle_off)),
       ),
-      body: BlocConsumer<CounterCubitCubit, CounterCubitState>(
-        listener: (context, state) {
-          if (counterCubit.isReached()) {
-            ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text("You Reached to 10 ")));
-          }
-        },
-        builder: (context, state) {
-          return Center(
+      body: BlocListener<CounterCubitCubit, CounterCubitState>(
+          listener: (context, state) {
+            if (states.isReachedPositive()) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("You Reached to 10 ")));
+            }
+            if (states.isReachedNegative()) {
+              ScaffoldMessenger.of(context).showSnackBar(
+                  const SnackBar(content: Text("You Reached to -10 ")));
+            }
+
+            if (states.isReachedMinus()) {
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return const AlertDialog(
+                      title: Text("Hi"),
+                      content: Text("You Reached to negative numbers "));
+                },
+              );
+            }
+          },
+          child: Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 const Text(
                   'You have pushed the button this many times:',
                 ),
-                Text(
-                  '${counterCubit.counter}',
-                  style: Theme.of(context).textTheme.headlineMedium,
+                BlocBuilder<CounterCubitCubit, CounterCubitState>(
+                  builder: (context, state) {
+                    return Text(
+                      '${counterCubit.counter}',
+                      style: Theme.of(context).textTheme.headlineMedium,
+                    );
+                  },
                 )
               ],
             ),
-          );
-        },
-      ),
+          )),
 
-      floatingActionButton: FloatingActionButton(
-        onPressed: counterCubit.incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+      floatingActionButton: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          FloatingActionButton(
+            onPressed: states.incrementCounter,
+            tooltip: 'Increment',
+            child: const Icon(Icons.add),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          FloatingActionButton(
+            onPressed: states.decrementCounter,
+            tooltip: 'Dercrement',
+            child: const Icon(Icons.minimize),
+          ),
+        ],
       ), // This trailing comma makes auto-formatting nicer for build methods.
     );
   }

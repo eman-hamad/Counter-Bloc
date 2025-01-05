@@ -14,22 +14,17 @@ class MyApp extends StatelessWidget {
   const MyApp({super.key});
   @override
   Widget build(BuildContext context) {
-    
     return MultiBlocProvider(
-    providers: [
-      BlocProvider<CounterCubitCubit>(
+      providers: [
+        BlocProvider<CounterCubitCubit>(
           create: (context) => CounterCubitCubit(),
         ),
-BlocProvider<ThemeBloc>(
+        BlocProvider<ThemeBloc>(
           create: (context) => ThemeBloc(),
         ),
-     
-    ],
-      
-     
-      child: BlocBuilder<ThemeBloc , ThemeState>(
-        builder: (context , state) =>
-       MaterialApp(
+      ],
+      child: BlocBuilder<ThemeBloc, ThemeState>(
+        builder: (context, state) => MaterialApp(
           title: 'Flutter Demo',
           debugShowCheckedModeBanner: false,
           theme: state.themeData,
