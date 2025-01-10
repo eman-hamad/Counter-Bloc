@@ -8,18 +8,19 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
 
   int counter = 0;
   // ThemeData theme = ThemeData.light();
+  // func to increment counter
   void incrementCounter() {
     emit(CounterCubitIncrement());
 
     counter++;
   }
-
+// func to decrement counter
   void decrementCounter() {
     emit(CounterCubitDecrement());
 
     counter--;
   }
-
+// func to check if counter is positive
   bool isReachedPositive() {
     if (counter == 10) {
       // emit(CounterCubitReached(counter));
@@ -28,7 +29,7 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
       return false;
     }
   }
-
+// func to check if counter is -10
   bool isReachedNegative() {
     if (counter == -10) {
       // emit(CounterCubitReached(counter));
@@ -37,7 +38,7 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
       return false;
     }
   }
-
+// func to check if counter is negative
   bool isReachedMinus() {
     if (counter < 0) {
       // emit(CounterCubitReached(counter));
