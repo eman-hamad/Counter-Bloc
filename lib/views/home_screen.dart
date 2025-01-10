@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // instanes of CounterCubitCubit and States
     var counterCubit = BlocProvider.of<CounterCubitCubit>(context);
     var states = context.read<CounterCubitCubit>();
 
@@ -21,10 +22,12 @@ class HomeScreen extends StatelessWidget {
         title: Text(title),
         leading: IconButton(
             onPressed: () {
+              // call add func to toggle
               context.read<ThemeBloc>().add(ToggleThemeEvent());
             },
             icon: const Icon(size: 35, Icons.toggle_off)),
       ),
+      // BlocListener to listen to states
       body: BlocListener<CounterCubitCubit, CounterCubitState>(
           listener: (context, state) {
             if (states.isReachedPositive()) {
@@ -54,6 +57,7 @@ class HomeScreen extends StatelessWidget {
                 const Text(
                   'You have pushed the button this many times:',
                 ),
+                // BlocBuilder rebuilds ui
                 BlocBuilder<CounterCubitCubit, CounterCubitState>(
                   builder: (context, state) {
                     return Text(
@@ -70,6 +74,7 @@ class HomeScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           FloatingActionButton(
+            // call state
             onPressed: states.incrementCounter,
             tooltip: 'Increment',
             child: const Icon(Icons.add),
