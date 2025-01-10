@@ -3,7 +3,7 @@ import 'package:counter__with_bloc/blocs/theme_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-
+// ThemeBloc to toggle between dark and light mode
 class ThemeBloc extends Bloc<ThemeEvent, ThemeState> {
   ThemeBloc() : super(ThemeState(lightTheme)) {
     on<ToggleThemeEvent>((event, emit) {
