@@ -1,16 +1,7 @@
 # counter__with_bloc
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+# implement "bloc" state management with two types : bloc and cubit
+# A CounterBloc to handle integer value in counter app and A CounterBloc to handle integer value by using Bloc Listener & Bloc Builder & Bloc Consumer
+# BlocListener to show a SnackBar when the counter reaches 10
+# BlocBuilder update the UI whenever the counter changes
+# BlocConsumer to display the counter and show a SnackBar for 10
