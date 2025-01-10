@@ -1,5 +1,5 @@
 part of 'counter_cubit_cubit.dart';
-
+// states of CounterCubit
 @immutable
 abstract class CounterCubitState {}
 
