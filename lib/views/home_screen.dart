@@ -12,6 +12,7 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // instance of  CounterCubit
     var counterCubit = BlocProvider.of<CounterCubitCubit>(context);
 
     return Scaffold(
@@ -20,12 +21,15 @@ class HomeScreen extends StatelessWidget {
         title: Text(title),
         leading: IconButton(
             onPressed: () {
+              // call add finction to implement toggle
               context.read<ThemeBloc>().add(ToggleThemeEvent());
             },
             icon: const Icon(size: 35, Icons.toggle_off)),
       ),
+      // BlocConsumer to rebuild ui and listen to state
       body: BlocConsumer<CounterCubitCubit, CounterCubitState>(
         listener: (context, state) {
+          // check state 
           if (counterCubit.isReached()) {
             ScaffoldMessenger.of(context).showSnackBar(
                 const SnackBar(content: Text("You Reached to 10 ")));
@@ -40,6 +44,7 @@ class HomeScreen extends StatelessWidget {
                   'You have pushed the button this many times:',
                 ),
                 Text(
+                  // show current counter
                   '${counterCubit.counter}',
                   style: Theme.of(context).textTheme.headlineMedium,
                 )
