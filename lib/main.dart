@@ -16,9 +16,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
+        // access CounterCubit
         BlocProvider<CounterCubitCubit>(
           create: (context) => CounterCubitCubit(),
         ),
+        // access ThemeBloc
         BlocProvider<ThemeBloc>(
           create: (context) => ThemeBloc(),
         ),
