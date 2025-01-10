@@ -8,12 +8,13 @@ class CounterCubitCubit extends Cubit<CounterCubitState> {
 
   int counter = 0;
   // ThemeData theme = ThemeData.light();
+  // func to increment counter
   void incrementCounter() {
     emit(CounterCubitIncrement());
 
     counter++;
   }
-
+// func check if it reached to 10
   bool isReached() {
     if (counter >= 10) {
       // emit(CounterCubitReached(counter));
